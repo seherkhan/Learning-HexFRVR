@@ -5,11 +5,8 @@ class Agent(object):
     def move(self,piece_name,game,loc):
         klass = globals()[piece_name]
         p = klass()
-        if p.put(game,loc):
-            print 'moved:\n', p,' at ',loc
-            return True
-        else:
-            return False
+        p.put(game,loc) # if space is available has already been checked
+        print 'moved:\n', p,' at ',loc
     def make_move(self,game,actions):
         for i in range(len(actions)):
             picked_action = actions[i]

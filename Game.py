@@ -25,6 +25,11 @@ class Game:
             #s = s + ' '*(row-4),str(self.grid[row])+'\n'
             s = ''.join([s,' '*(row-4),str(self.grid[row]),'\n'])
         return s
+    
+    def get_grid(self):
+        return str(self.grid) 
+    def test_grid_2(self,grid):
+        self.grid = grid
             
     def test_grid(self):
         # set grid with locations of each cell, and print
@@ -253,16 +258,8 @@ class Game:
                 self.grid[n][i]=val
 
 
-# In[133]:
-
-
-# init, str, test_grid(), empty() works
-# neigh functions work
-# fill and is_full diag/hh functions work
-# fill and is_full loc functions work
-
-game = Game()
 '''
+#game = Game()
 checking neigh functions
 print game
 locs=[(0,0),(0,2),(0,4),(2,6),(4,8),(6,6),(8,4),(8,2),
@@ -344,16 +341,6 @@ print game.is_full_loc((5,7))
 
 
 '''
-
-
-# In[ ]:
-
-
-# TODO implement shape putting
-# implement resetting on check is_full
-
-
-# In[ ]:
 
 
 
