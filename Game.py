@@ -27,7 +27,14 @@ class Game:
         return s
     
     def get_grid(self):
-        return str(self.grid) 
+    	out = []
+    	for row in self.grid:
+    		out.append(int(''.join(map(str,row)),base=2))
+    	out_str=','.join(map(str,out))
+    	# print out_str
+    	return out_str
+    	#return str(self.grid)
+        
     def test_grid_2(self,grid):
         self.grid = grid
             
@@ -173,41 +180,49 @@ class Game:
     
     def is_full(self):
         output=dict()
-        count_cleared=0
+        counts_cleared=[]
         for n in range(5):
             if(self.is_full_rr(n)):
                 if 'rr' in output:
                     output['rr'].append(n)
-                    count_cleared=count_cleared+self.is_full_rr(n)[1]
+                    #count_cleared=count_cleared+self.is_full_rr(n)[1]
                 else:
                     output['rr']=[n]
+                counts_cleared.append(9-n)
             if(self.is_full_ll(n)):
                 if 'll' in output:
                     output['ll'].append(n)
-                    count_cleared=count_cleared+self.is_full_ll(n)[1]
+                    #count_cleared=count_cleared+self.is_full_ll(n)[1]
                 else:
                     output['ll']=[n]
+                counts_cleared.append(5+n)
         for n in range(1,5):
             if(self.is_full_rl(n)):
                 if 'rl' in output:
                     output['rl'].append(n)
-                    count_cleared=count_cleared+self.is_full_rl(n)[1]
+                    #count_cleared=count_cleared+self.is_full_rl(n)[1]
                 else:
                     output['rl']=[n]
+                counts_cleared.append(9-n)
             if(self.is_full_lr(n)):
                 if 'lr' in output:
                     output['lr'].append(n)
-                    count_cleared=count_cleared+self.is_full_lr(n)[1]
+                    #count_cleared=count_cleared+self.is_full_lr(n)[1]
                 else:
                     output['lr']=[n]
+                counts_cleared.append(9-n)
         for n in range(9):
             if(self.is_full_hh(n)):
                 if 'hh' in output:
                     output['hh'].append(n)
-                    count_cleared=count_cleared+self.is_full_hh(n)[1]
+                    #count_cleared=count_cleared+self.is_full_hh(n)[1]
                 else:
                     output['hh']=[n]
-        return output,count_cleared
+                if n<=4:
+                    counts_cleared.append(5+n)
+                else:
+                    counts_cleared.append(13-n)
+        return output,sorted(counts_cleared)
 
     
     # fill/empty location
